@@ -1,8 +1,8 @@
-import { getByTitle } from '@testing-library/react';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import './App.css';
 import Article from './components/Article';
+import AddArticle from './components/AddArticle';
 import DataBase from './DataBase';
 
 export default function App() {
@@ -12,11 +12,9 @@ export default function App() {
     setArticles(articles.filter((article) => article._id !== articleId));
   }
 
-  function handleAddArticle() {
-    setArticles([
-      ...articles,
-      { id: nanoid(), name: { en: getByTitle, de: '' } },
-    ]);
+  function handleAddArticle(title) {
+    const newArticle = { _id: nanoid(), name: { en: title, de: '' } };
+    setArticles([...articles, newArticle]);
   }
 
   return (
@@ -24,20 +22,17 @@ export default function App() {
       <section className="AppTitle">
         <h1>Shopping List</h1>
       </section>
-      <ul class="ArticleList">
+      <ul className="ArticleList">
         {articles.map((article) => (
           <Article
             key={article._id}
             article={article}
             onDelete={handleRemoveArticle}
+            name={article.name.en}
           />
         ))}
       </ul>
-      <form class="AddArticle">
-        <label>Add an article</label>
-        <input type="input" placeholder="Type your article here"></input>
-        <button onKlick={handleAddArticle}>Add to shopping list</button>
-      </form>
+      <AddArticle onAddArticle={handleAddArticle} />
     </main>
   );
 }
