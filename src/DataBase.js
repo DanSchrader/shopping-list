@@ -1,4 +1,4 @@
-const Articles = [
+const DataBase = [
   {
     _id: 'c2hvcHBpbmcuaXRlbTox',
     _type: 'shopping.item',
@@ -55,4 +55,4 @@ const Articles = [
   },
 ];
 
-export default Articles;
+export default DataBase;
