@@ -3,13 +3,17 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Article from './components/Article';
 import AddArticle from './components/AddArticle';
+import FilterArticles from './components/FilterArticles';
+import './styles/FilterArticles.css';
 // import DataBase from './DataBase';
 
 export default function App() {
   const [articles, setArticles] = useState([]);
-  const [apiURL, setApiURL] = useState(
-    'https://fetch-me.vercel.app/api/shopping/items'
-  );
+  // const [apiURL, setApiURL] = useState(
+  //   'https://fetch-me.vercel.app/api/shopping/items'
+  // );
+
+  const apiURL = 'https://fetch-me.vercel.app/api/shopping/items';
 
   useEffect(() => {
     importArticles();
@@ -22,7 +26,7 @@ export default function App() {
         console.error(error);
       }
     }
-  }, [apiURL]);
+  }, []);
 
   function handleRemoveArticle(articleId) {
     setArticles(articles.filter((article) => article._id !== articleId));
@@ -49,6 +53,7 @@ export default function App() {
         ))}
       </ul>
       <AddArticle onAddArticle={handleAddArticle} />
+      <FilterArticles />
     </main>
   );
 }
