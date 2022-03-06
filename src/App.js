@@ -10,6 +10,7 @@ export default function App() {
   const [apiURL, setApiURL] = useState(
     'https://fetch-me.vercel.app/api/shopping/items'
   );
+
   useEffect(() => {
     importArticles();
     async function importArticles() {
